@@ -6,7 +6,7 @@
 
 <hr />
 
-![main figure](media\intro.png)
+![main figure](media/intro.png)
 > **Abstract:** *Transformer-based models have become increasingly popular for medical image segmentation. While they incorporate positional encoding to model spatial structure, this encoding only captures patch positions within a cropped 3D subvolume, not within the full anatomical scan. As a result, important global spatial context—such as organ location priors—is lost. This limitation is particularly harmful in medical scenarios where multiple organs may share similar intensity profiles but differ in anatomical position.
 In this work, we propose a lightweight Global Positional Encoding (GPE) module that injects absolute 3D spatial coordinates into transformer based segmentation networks. GPE recovers lost anatomical information and enhances spatial awareness without significant overhead. We integrate GPE into four representative models—UNETR, Swin-UNETR, nnFormer, and UNETR++ and evaluate on the Synapse multi-organ CT dataset. Results show consistent performance gains across all models, with up to 1.66% improvement in Dice score and substantial reduction
 in HD95.
@@ -78,7 +78,7 @@ The dataset folders for Synapse should be organized as follows:
 ## Training
 The following scripts can be used for training our UNETR++ model on the datasets:
 ```shell
-bash training_scripts/run_training_synapse.sh
+bash run_training_synapse.sh
 ```
 
 <hr />
