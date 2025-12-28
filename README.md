@@ -1,4 +1,6 @@
 # Global Positional Encoding and Its Application in Medical Image Segmentation
+[![paper](https://img.shields.io/badge/Paper-<COLOR>.svg)](https://link.springer.com/chapter/10.1007/978-981-95-4960-3_36)
+[![slides](https://img.shields.io/badge/Presentation-Slides-B762C1)](https://www.canva.com/design/DAG6RupacLw/tIKvDYx15oeFsrdTp5l_4Q/edit?utm_content=DAG6RupacLw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 
 ## News
