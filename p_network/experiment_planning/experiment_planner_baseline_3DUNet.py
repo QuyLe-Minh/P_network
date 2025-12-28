@@ -427,8 +427,8 @@ class ExperimentPlanner(object):
         normalization_schemes = self.plans['normalization_schemes']
         use_nonzero_mask_for_normalization = self.plans['use_mask_for_norm']
         intensityproperties = self.plans['dataset_properties']['intensityproperties']
-        preprocessor_class = recursive_find_python_class([join(unetr_pp.__path__[0], "preprocessing")],
-                                                         self.preprocessor_name, current_module="unetr_pp.preprocessing")
+        preprocessor_class = recursive_find_python_class([join(p_network.__path__[0], "preprocessing")],
+                                                         self.preprocessor_name, current_module="p_network.preprocessing")
         assert preprocessor_class is not None
         preprocessor = preprocessor_class(normalization_schemes, use_nonzero_mask_for_normalization,
                                          self.transpose_forward,

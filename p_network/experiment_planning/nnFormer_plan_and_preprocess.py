@@ -80,21 +80,21 @@ def main():
 
         tasks.append(task_name)
 
-    search_in = join(unetr_pp.__path__[0], "experiment_planning")
+    search_in = join(p_network.__path__[0], "experiment_planning")
 
     if planner_name3d is not None:
-        planner_3d = recursive_find_python_class([search_in], planner_name3d, current_module="unetr_pp.experiment_planning")
+        planner_3d = recursive_find_python_class([search_in], planner_name3d, current_module="p_network.experiment_planning")
         if planner_3d is None:
             raise RuntimeError("Could not find the Planner class %s. Make sure it is located somewhere in "
-                               "unetr_pp.experiment_planning" % planner_name3d)
+                               "p_network.experiment_planning" % planner_name3d)
     else:
         planner_3d = None
 
     if planner_name2d is not None:
-        planner_2d = recursive_find_python_class([search_in], planner_name2d, current_module="unetr_pp.experiment_planning")
+        planner_2d = recursive_find_python_class([search_in], planner_name2d, current_module="p_network.experiment_planning")
         if planner_2d is None:
             raise RuntimeError("Could not find the Planner class %s. Make sure it is located somewhere in "
-                               "unetr_pp.experiment_planning" % planner_name2d)
+                               "p_network.experiment_planning" % planner_name2d)
     else:
         planner_2d = None
 

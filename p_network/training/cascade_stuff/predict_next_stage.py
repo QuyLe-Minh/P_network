@@ -110,12 +110,12 @@ if __name__ == "__main__":
     plans_file, folder_with_preprocessed_data, output_folder_name, dataset_directory, batch_dice, stage = \
         get_default_configuration("3d_lowres", task)
 
-    trainer_class = recursive_find_python_class([join(unetr_pp.__path__[0], "training", "network_training")],
+    trainer_class = recursive_find_python_class([join(p_network.__path__[0], "training", "network_training")],
                                                 trainerclass,
-                                                "unetr_pp.training.network_training")
+                                                "p_network.training.network_training")
 
     if trainer_class is None:
-        raise RuntimeError("Could not find trainer class in unetr_pp.training.network_training")
+        raise RuntimeError("Could not find trainer class in p_network.training.network_training")
     else:
         assert issubclass(trainer_class,
                           Trainer_acdc), "network_trainer was found but is not derived from nnFormerTrainer"

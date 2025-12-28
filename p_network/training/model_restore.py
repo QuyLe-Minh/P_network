@@ -42,7 +42,7 @@ def recursive_find_python_class(folder, trainer_name, current_module):
 def restore_model(pkl_file, checkpoint=None, train=False, fp16=None,folder=None):
     """
     This is a utility function to load any nnFormer trainer from a pkl. It will recursively search
-    unetr_pp.trainig.network_training for the file that contains the trainer and instantiate it with the arguments saved in the pkl file. If checkpoint
+    p_network.trainig.network_training for the file that contains the trainer and instantiate it with the arguments saved in the pkl file. If checkpoint
     is specified, it will furthermore load the checkpoint file in train/test mode (as specified by train).
     The pkl file required here is the one that will be saved automatically when calling nnFormerTrainer.save_checkpoint.
     :param pkl_file:
@@ -75,8 +75,8 @@ def restore_model(pkl_file, checkpoint=None, train=False, fp16=None,folder=None)
         init=list(init)
         del init[2]
         del init[-2]
-    search_in = join(unetr_pp.__path__[0], "training", "network_training")
-    tr = recursive_find_python_class([search_in], name, current_module="unetr_pp.training.network_training")
+    search_in = join(p_network.__path__[0], "training", "network_training")
+    tr = recursive_find_python_class([search_in], name, current_module="p_network.training.network_training")
 
     if tr is None:
         """
@@ -90,9 +90,9 @@ def restore_model(pkl_file, checkpoint=None, train=False, fp16=None,folder=None)
             pass
 
     if tr is None:
-        raise RuntimeError("Could not find the model trainer specified in checkpoint in unetr_pp.trainig.network_training. If it "
+        raise RuntimeError("Could not find the model trainer specified in checkpoint in p_network.trainig.network_training. If it "
                            "is not located there, please move it or change the code of restore_model. Your model "
-                           "trainer can be located in any directory within unetr_pp.trainig.network_training (search is recursive)."
+                           "trainer can be located in any directory within p_network.trainig.network_training (search is recursive)."
                            "\nDebug info: \ncheckpoint file: %s\nName of trainer: %s " % (checkpoint, name))
 
     trainer = tr(*init)

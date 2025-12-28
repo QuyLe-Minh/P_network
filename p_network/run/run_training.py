@@ -125,7 +125,7 @@ def main():
     trainer_class = get_default_configuration(network, task, network_trainer, plans_identifier)
 
     if trainer_class is None:
-        raise RuntimeError("Could not find trainer class in unetr_pp.training.network_training")
+        raise RuntimeError("Could not find trainer class in p_network.training.network_training")
 
 
     trainer = trainer_class(plans_file, fold, output_folder=output_folder_name, dataset_directory=dataset_directory,

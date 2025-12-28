@@ -19,7 +19,7 @@ from p_network.paths import *
 
 class ExperimentPlanner2D_v21_RGB_scaleTo_0_1(ExperimentPlanner2D_v21):
     """
-    used by tutorial unetr_pp.tutorials.custom_preprocessing
+    used by tutorial p_network.tutorials.custom_preprocessing
     """
     def __init__(self, folder_with_cropped_data, preprocessed_output_folder):
         super().__init__(folder_with_cropped_data, preprocessed_output_folder)
@@ -27,6 +27,6 @@ class ExperimentPlanner2D_v21_RGB_scaleTo_0_1(ExperimentPlanner2D_v21):
         self.plans_fname = join(self.preprocessed_output_folder, "nnFormer_RGB_scaleTo_0_1" + "_plans_2D.pkl")
 
         # The custom preprocessor class we intend to use is GenericPreprocessor_scale_uint8_to_0_1. It must be located
-        # in unetr_pp.preprocessing (any file and submodule) and will be found by its name. Make sure to always define
+        # in p_network.preprocessing (any file and submodule) and will be found by its name. Make sure to always define
         # unique names!
         self.preprocessor_name = 'GenericPreprocessor_scale_uint8_to_0_1'
