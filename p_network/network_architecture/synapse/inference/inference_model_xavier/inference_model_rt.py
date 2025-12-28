@@ -395,13 +395,13 @@ if __name__ == '__main__':
     net_fused.load_state_dict(state_dict)
     print("Loading weight finish!!")
 
-    x = 7*torch.randn(1, 1, 64, 128, 128).to(device).to(torch.float32)
+    x = torch.randn(1, 1, 64, 128, 128).to(device).to(torch.float32)
     pos = torch.randn(1, 6).to(device).to(torch.float32)
     
     trt_path = "model.trt"
     convert_to_onnx(net_fused, (x, pos), onnx_path='model.onnx')
-    
-    build_engine('model.onnx', use_fp16=True)
+    breakpoint()
+    build_engine('model.onnx', use_fp16=False)
     # output = run_inference_with_tensorrt(trt_path, [x, pos])
     tensor_rt_model = TensorRTModel(trt_path)
     output = tensor_rt_model(x, pos)

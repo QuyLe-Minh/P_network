@@ -1,9 +1,7 @@
 import torch
 import tensorrt as trt
-from scipy.stats import pearsonr
 
-from p_network.network_architecture.synapse.inference.inference_model_xavier.unetr_pp_synapse import UNETR_PP as Network_fused
-from p_network.network_architecture.synapse.synapse_student.unetr_pp_synapse import UNETR_PP as Network_original
+from p_network.rt_inference.inferencer import SegmentationNetwork
 
 
 def convert_to_onnx(model, input_tensors, onnx_path='model.onnx'):
@@ -57,7 +55,7 @@ def build_engine(onnx_file_path, trt_file_path='model.trt', use_fp16=False):
     return serialized_engine
 
 
-class TensorRTModel:
+class TensorRTModel(SegmentationNetwork):
     def __init__(self, trt_path):
         """
         Initialize the TensorRT model
@@ -65,6 +63,7 @@ class TensorRTModel:
         Args:
             trt_path: Path to the serialized TensorRT engine file
         """
+        super().__init__()
         # Initialize TensorRT logger
         self.logger = trt.Logger(trt.Logger.WARNING)
         
@@ -170,7 +169,7 @@ class TensorRTModel:
             self.output_buffers.append(buffer)
             self.buffer_dict[tensor_name] = buffer
             
-    def __call__(self, *input_tensors):
+    def forward(self, *input_tensors):
         """
         Run inference with the TensorRT engine
         
@@ -218,7 +217,7 @@ class TensorRTModel:
             result = buffer.cpu().numpy()
             results.append(result)
             
-        return results
+        return torch.from_numpy(results[0])
         
     def __del__(self):
         """Clean up resources"""
@@ -366,73 +365,3 @@ def run_inference_with_tensorrt(trt_path, input_tensors):
         del context
         del engine
         del runtime
-
-
-if __name__ == '__main__':
-    import time
-    if not torch.cuda.is_available():
-        print("CUDA is not available!!")
-    else:
-        print("CUDA is available!!")
-
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    net_fused = Network_fused(in_channels=1, out_channels=14, img_size=(64, 128, 128), feature_size=16, num_heads=4,
-                  norm_name='instance', depths=[3, 3, 3, 3], dims=[32, 64, 128, 256], do_ds=True)
-    
-    net_original = Network_original(in_channels=1, out_channels=14, img_size=(64, 128, 128), feature_size=16, num_heads=4,
-                  norm_name='instance', depths=[3, 3, 3, 3], dims=[32, 64, 128, 256], do_ds=True)
-
-    net_fused.do_ds = False
-    net_fused.eval().to(device)
-    net_original.do_ds = False
-    net_original.eval().to(device)
-    
-    path = "C:/Users/Admin/OneDrive - hcmut.edu.vn/A.I. references/ComVis/Research/Results/checkpoints/synapse_unetrpp_weightmap.model"
-    checkpoint = torch.load(path, map_location='cpu', weights_only=False)
-    state_dict = checkpoint['state_dict']
-    state_dict = {key: value for key, value in state_dict.items() if 'density' not in key}
-    net_original.load_state_dict(state_dict)
-    net_fused.load_state_dict(state_dict)
-    print("Loading weight finish!!")
-
-    x = 7*torch.randn(1, 1, 64, 128, 128).to(device).to(torch.float32)
-    pos = torch.randn(1, 6).to(device).to(torch.float32)
-    
-    trt_path = "model.trt"
-    convert_to_onnx(net_fused, (x, pos), onnx_path='model.onnx')
-    
-    build_engine('model.onnx', use_fp16=True)
-    # output = run_inference_with_tensorrt(trt_path, [x, pos])
-    tensor_rt_model = TensorRTModel(trt_path)
-    output = tensor_rt_model(x, pos)
-
-    # Run inference with the optimized model
-    y_trt_flat = output[0].flatten()
-    print("Inference with optimized model completed")
-    with torch.no_grad():
-        y_original = net_original(x, pos)
-    y_original_flat = y_original.detach().cpu().numpy().flatten()
-
-    pcc, _ = pearsonr(y_trt_flat, y_original_flat)
-    print(f"Pearson Correlation Coefficient (Original vs TensorRT): {pcc:.6f}")
-    
-    t = []
-    for i in range(184):
-        start = time.time()
-        with torch.no_grad():
-            _ = net_original(x, pos)
-        end = time.time()
-        if i > 0:
-            t.append(end - start)
-            
-    print(f'Time for one sample original: {sum(t):.4f} seconds')
-    
-    t = []
-    for i in range(184):
-        start = time.time()
-        _ = tensor_rt_model(x, pos)
-        end = time.time()
-        if i > 0:
-            t.append(end - start)
-            
-    print(f'Time for one sample fused: {sum(t):.4f} seconds')
