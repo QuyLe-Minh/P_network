@@ -41,8 +41,8 @@ The code is tested with PyTorch 1.11.0 and CUDA 11.3. After cloning the reposito
 
 1. Create and activate conda environment
 ```shell
-conda create --name unetr_pp python=3.8
-conda activate unetr_pp
+conda create --name p_network python=3.8
+conda activate p_network
 ```
 2. Install PyTorch and torchvision
 ```shell
