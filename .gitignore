@@ -1,0 +1,77 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Pip / wheel metadata
+pip-wheel-metadata/
+
+# Test / cache
+.pytest_cache/
+.mypy_cache/
+.cache/
+
+# Jupyter
+.ipynb_checkpoints
+
+# Checkpoints / model training
+checkpoints/
+checkpoint/
+*.ckpt
+*.pth
+*.pt
+
+# Model / large binaries
+*.trt
+*.onnx
+*.model
+*.h5
+*.pb
+*.tflite
+*.bin
+*.npy
+*.npz
+
+# Archives
+*.zip
+*.tar.gz
+*.tar
+*.gz
+
+# IDEs
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+
+# Coverage / reports
+htmlcov/
+.coverage
+coverage.xml
+
+# Misc
+*.sqlite3
+*.db
