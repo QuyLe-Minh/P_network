@@ -78,7 +78,6 @@ The dataset folders for Synapse should be organized as follows:
  ```
 
 ## Training
-The following scripts can be used for training our UNETR++ model on the datasets:
 ```shell
 bash run_training_synapse.sh
 ```
