@@ -185,7 +185,7 @@ class bank_trainer_synapse(Trainer_synapse):
 
         self.network.inference_apply_nonlin = softmax_helper
 
-        self.load_pretrain("output_synapse/unetr_pp/3d_fullres/Task002_Synapse/PE_trainer_synapse__unetr_pp_Plansv2.1/fold_0/ckpt_final.model")
+        self.load_pretrain("output_synapse/p_network/3d_fullres/Task002_Synapse/PE_trainer_synapse__unetr_pp_Plansv2.1/fold_0/ckpt_final.model")
         
         # Print the network parameters & Flops
         n_parameters = sum(p.numel() for p in self.network.parameters() if p.requires_grad)

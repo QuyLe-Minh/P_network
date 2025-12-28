@@ -164,7 +164,7 @@ def main():
         trainer.network.eval()
 
         # predict validation
-        output_folder = 'output_btcv/unetr_pp/3d_fullres/Task003_btcv/unetr_pp_trainer_btcv__unetr_pp_Plansv2.1/fold_0/test/'
+        output_folder = 'output_btcv/p_network/3d_fullres/Task003_btcv/unetr_pp_trainer_btcv__unetr_pp_Plansv2.1/fold_0/test/'
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
         for file in os.listdir(Tsfolder):

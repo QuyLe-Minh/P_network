@@ -178,7 +178,7 @@ class unetr_pp_trainer_synapse(Trainer_synapse):
         self.network.inference_apply_nonlin = softmax_helper
         
         # self.load_pretrain(self.network, "unetrpp_synapse_student.model", "unetrpp_synapse_teacher.model")
-        self.load_pretrain("output_synapse_student/unetr_pp/3d_fullres/Task002_Synapse/unetr_pp_trainer_synapse__unetr_pp_Plansv2.1/fold_0/model_final_checkpoint.model")
+        self.load_pretrain("output_synapse_student/p_network/3d_fullres/Task002_Synapse/unetr_pp_trainer_synapse__unetr_pp_Plansv2.1/fold_0/model_final_checkpoint.model")
         # self.load_pretrain(self.teacher, "unetrpp_synapse_teacher.model")
         
         # Print the network parameters & Flops

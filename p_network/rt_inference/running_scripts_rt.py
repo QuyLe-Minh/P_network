@@ -21,7 +21,7 @@ def main():
     trt_path = args.trt
     plans_file = args.plans_file_path
 
-    # plans_file = "C:/Users/Admin/OneDrive - hcmut.edu.vn/A.I. references/ComVis/Research/Coding/framework/unetr_pp/rt_inference/unetr_pp_Plansv2.1_plans_3D.pkl"
+    # plans_file = "C:/Users/Admin/OneDrive - hcmut.edu.vn/A.I. references/ComVis/Research/Coding/framework/p_network/rt_inference/unetr_pp_Plansv2.1_plans_3D.pkl"
     
     trainer = InferenceEngine(trt_path, plans_file)
 

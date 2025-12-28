@@ -422,7 +422,7 @@ def apply_postprocessing_to_folder(input_folder: str, output_folder: str, for_wh
 
 
 if __name__ == "__main__":
-    input_folder = "output_btcv/unetr_pp/3d_fullres/Task003_btcv/unetr_pp_trainer_btcv__unetr_pp_Plansv2.1/fold_0/test"
-    output_folder = "output_btcv/unetr_pp/3d_fullres/Task003_btcv/unetr_pp_trainer_btcv__unetr_pp_Plansv2.1/fold_0/test_postprocess"
+    input_folder = "output_btcv/p_network/3d_fullres/Task003_btcv/unetr_pp_trainer_btcv__unetr_pp_Plansv2.1/fold_0/test"
+    output_folder = "output_btcv/p_network/3d_fullres/Task003_btcv/unetr_pp_trainer_btcv__unetr_pp_Plansv2.1/fold_0/test_postprocess"
     for_which_classes = [(1, 12, 13, 3, 5, 6), ]
     apply_postprocessing_to_folder(input_folder, output_folder, for_which_classes)

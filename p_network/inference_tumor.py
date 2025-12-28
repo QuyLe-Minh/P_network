@@ -45,7 +45,7 @@ def test(fold):
     
     label_list=sorted(glob.glob(os.path.join(path,'labelsTs','*nii.gz')))
 
-    infer_path = None # Replace None by the full path of : unetr_plus_plus/unetr_pp/evaluation/unetr_pp_tumor_checkpoint/"
+    infer_path = None # Replace None by the full path of : unetr_plus_plus/p_network/evaluation/unetr_pp_tumor_checkpoint/"
 
     infer_list=sorted(glob.glob(os.path.join(infer_path,'inferTs','*nii.gz')))
     print("loading success...")

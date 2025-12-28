@@ -36,7 +36,7 @@ class FrequencyEncoding(nn.Module):
 #     def __init__(self, n_input_dim = 3):
 #         super(HashEncoding, self).__init__()
         
-#         with open("unetr_pp/network_architecture/synapse/unetr/config_hash.json") as f:
+#         with open("p_network/network_architecture/synapse/unetr/config_hash.json") as f:
 #         	config = json.load(f)
 #         self.encoding = tcnn.Encoding(n_input_dim, config["encoding"])
 

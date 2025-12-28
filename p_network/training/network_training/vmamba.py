@@ -185,7 +185,7 @@ class Vmamba(Trainer_synapse):
 
         self.network.inference_apply_nonlin = softmax_helper
 
-        # self.load_pretrain("output_synapse_PE_contrastive/unetr_pp/3d_fullres/Task002_Synapse/PE_trainer_synapse__unetr_pp_Plansv2.1/fold_0/with_temp.model")
+        # self.load_pretrain("output_synapse_PE_contrastive/p_network/3d_fullres/Task002_Synapse/PE_trainer_synapse__unetr_pp_Plansv2.1/fold_0/with_temp.model")
         
         # Print the network parameters & Flops
         n_parameters = sum(p.numel() for p in self.network.parameters() if p.requires_grad)
