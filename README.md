@@ -41,8 +41,8 @@ The code is tested with PyTorch 1.11.0 and CUDA 11.3. After cloning the reposito
 
 1. Create and activate conda environment
 ```shell
-conda create --name unetr_pp python=3.8
-conda activate unetr_pp
+conda create --name p_network python=3.8
+conda activate p_network
 ```
 2. Install PyTorch and torchvision
 ```shell
@@ -91,7 +91,7 @@ Because all the weights are in remote server, which I do not have access recentl
 <hr />
 
 ## Acknowledgement
-This repository is built based on [UNETR++](https://github.com/Amshaker/unetr_plus_plus/tree/main) repository.
+This repository is (heavily) built based on [UNETR++](https://github.com/Amshaker/unetr_plus_plus/tree/main) repository.
 We acknowledge Ho Chi Minh City University of Technology (HCMUT), VNU
 HCM for supporting this study; and we also acknowledge Data Science Labo
 ratory (DsciLab) and High Performance Computing Laboratory (HPCLab), Ho
